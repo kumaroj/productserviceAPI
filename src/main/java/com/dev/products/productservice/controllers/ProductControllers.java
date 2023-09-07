@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController()
 @RequestMapping("/products/")
 public class ProductControllers {
@@ -25,24 +27,23 @@ public class ProductControllers {
     public void setProductService(ProductService productService){
         this.productService = productService;
     }
-
-    public void getAllProducts(){
-
+    @GetMapping()
+    public List<GenericProductDto> getAllProducts(){
+        return productService.getAllProducts();
     }
     @GetMapping("{id}")
-    public GenericProductDto getproductById(@PathVariable("id") long id){
+    public GenericProductDto getProductById(@PathVariable("id") long id){
        return productService.getproductById(id);
 
     }
 
     @DeleteMapping("{id}")
-    public void deleteproductById(){
-
+    public GenericProductDto deleteProductById(@PathVariable("id") long id){
+        return productService.deleteproductById(id);
     }
     @PostMapping()
     public GenericProductDto createProduct(@RequestBody GenericProductDto genericProductDto){
        return productService.createProduct(genericProductDto);
-       // return "here is the post request for creating products 1231";
     }
     @PutMapping("{id}")
     public GenericProductDto updateProduct(@RequestBody GenericProductDto genericProductDto,@PathVariable("id") long id ){
