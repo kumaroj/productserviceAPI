@@ -21,11 +21,13 @@ import java.util.List;
 public class FakeStoreProductService implements ProductService{
 
     private RestTemplateBuilder restTemplateBuilder;
+    //private RestTemplate restTemplate;
     private String specificProductRequestUrl = "https://fakestoreapi.com/products/{id}";
     private String productRequestBaseUrl = "https://fakestoreapi.com/products";
 
     public FakeStoreProductService(RestTemplateBuilder restTemplateBuilder){
         this.restTemplateBuilder = restTemplateBuilder;
+
     }
 
     @Override
@@ -41,10 +43,16 @@ public class FakeStoreProductService implements ProductService{
     @Override
     public GenericProductDto updateProduct(GenericProductDto genericProductDto , long id) {
         RestTemplate restTemplate = restTemplateBuilder.build();
-        RequestCallback requestCallback = restTemplate.acceptHeaderRequestCallback(FakeStoreProductDto.class);
+
+        RequestCallback requestCallback = restTemplate.httpEntityCallback(genericProductDto, FakeStoreProductDto.class);
         ResponseExtractor<ResponseEntity<FakeStoreProductDto>> responseExtractor = restTemplate.responseEntityExtractor(FakeStoreProductDto.class);
-        ResponseEntity<FakeStoreProductDto> responseEntity = restTemplate.execute(specificProductRequestUrl,
-                HttpMethod.PUT, requestCallback, responseExtractor, id);
+        ResponseEntity<FakeStoreProductDto> responseEntity  = restTemplate.execute(specificProductRequestUrl, HttpMethod.PUT,
+                requestCallback, responseExtractor, id);
+//        RequestCallback requestCallback = restTemplate.acceptHeaderRequestCallback(FakeStoreProductDto.class);
+//        ResponseExtractor<ResponseEntity<FakeStoreProductDto>> responseExtractor = restTemplate.responseEntityExtractor(FakeStoreProductDto.class);
+//        ResponseEntity<FakeStoreProductDto> responseEntity = restTemplate.execute(specificProductRequestUrl,
+//                HttpMethod.PUT, requestCallback, responseExtractor, id);
+
        FakeStoreProductDto fakeStoreProductDto= responseEntity.getBody();
        genericProductDto.setPrice(fakeStoreProductDto.getPrice());
        genericProductDto.setCategory(fakeStoreProductDto.getCategory());
