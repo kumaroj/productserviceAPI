@@ -1,5 +1,6 @@
 package com.dev.products.productservice.services;
 
+import com.dev.products.productservice.models.Product;
 import com.dev.products.productservice.thirdpartyclientsfakestore.FakeStoreProductDto;
 import com.dev.products.productservice.dtos.GenericProductDto;
 import com.dev.products.productservice.exceptions.NotFoundException;
@@ -83,4 +84,6 @@ public class FakeStoreProductService implements ProductService{
        return changeFakeStoreProductDtoToGenericDto(fakeStoreProductServiceClient.deleteproductById(id));
 
     }
+
+
 }

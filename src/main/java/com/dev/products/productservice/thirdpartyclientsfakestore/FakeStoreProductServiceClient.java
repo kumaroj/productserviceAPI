@@ -19,7 +19,7 @@ public class FakeStoreProductServiceClient {
 
     private RestTemplateBuilder restTemplateBuilder;
 
-    @Value("${fakestore.api.hostUrl}")
+    @Value("${fakestore.api.hosturl}")
     private String fakestorehostUrl;
 
     @Value("${fakestore.api.paths.product}")

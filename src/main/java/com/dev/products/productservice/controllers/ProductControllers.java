@@ -22,7 +22,7 @@ public class ProductControllers {
     private ProductService productService;
 
     //constructor injection
-    public ProductControllers(@Qualifier("fakeStoreProductService") ProductService productService){
+    public ProductControllers(@Qualifier("selfProductServiceImpl") ProductService productService){
         this.productService = productService;
     }
 
@@ -47,7 +47,7 @@ public class ProductControllers {
                 HttpStatus.NOT_FOUND);
         return responseEntity;
     }
-    @PostMapping()
+    @PostMapping(value = "/createProduct")
     public GenericProductDto createProduct(@RequestBody GenericProductDto genericProductDto){
        return productService.createProduct(genericProductDto);
     }
