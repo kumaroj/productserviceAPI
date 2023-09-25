@@ -49,7 +49,7 @@ public class FakeStoreProductService implements ProductService{
 
 
     @Override
-    public GenericProductDto updateProduct(GenericProductDto genericProductDto , long id) {
+    public GenericProductDto updateProduct(GenericProductDto genericProductDto , String id) {
        FakeStoreProductDto fakeStoreProductDto = fakeStoreProductServiceClient.updateProduct(genericProductDto  , id);
        genericProductDto.setPrice(fakeStoreProductDto.getPrice());
        genericProductDto.setCategory(fakeStoreProductDto.getCategory());
@@ -59,7 +59,7 @@ public class FakeStoreProductService implements ProductService{
 
 
     @Override
-    public GenericProductDto getproductById(long id) throws NotFoundException {
+    public GenericProductDto getproductById(String id) throws NotFoundException {
 
      FakeStoreProductDto fakeStoreProductDto=fakeStoreProductServiceClient.getproductById(id);
      if (fakeStoreProductDto == null)
@@ -80,10 +80,9 @@ public class FakeStoreProductService implements ProductService{
     }
 
     @Override
-    public GenericProductDto deleteproductById(long id) {
+    public GenericProductDto deleteproductById(String id) {
        return changeFakeStoreProductDtoToGenericDto(fakeStoreProductServiceClient.deleteproductById(id));
 
     }
-
 
 }

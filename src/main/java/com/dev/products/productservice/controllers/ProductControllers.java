@@ -36,13 +36,13 @@ public class ProductControllers {
         return productService.getAllProducts();
     }
     @GetMapping("{id}")
-    public GenericProductDto getProductById(@PathVariable("id") long id) throws NotFoundException {
+    public GenericProductDto getProductById(@PathVariable("id") String id) throws NotFoundException {
        return productService.getproductById(id);
 
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<GenericProductDto> deleteProductById(@PathVariable("id") long id){
+    public ResponseEntity<GenericProductDto> deleteProductById(@PathVariable("id") String id) throws NotFoundException {
         ResponseEntity<GenericProductDto> responseEntity= new ResponseEntity<>(productService.deleteproductById(id) ,
                 HttpStatus.NOT_FOUND);
         return responseEntity;
@@ -52,7 +52,7 @@ public class ProductControllers {
        return productService.createProduct(genericProductDto);
     }
     @PutMapping("{id}")
-    public GenericProductDto updateProduct(@RequestBody GenericProductDto genericProductDto,@PathVariable("id") long id ){
+    public GenericProductDto updateProduct(@RequestBody GenericProductDto genericProductDto,@PathVariable("id") String id ){
         return productService.updateProduct(genericProductDto , id);
     }
     @ExceptionHandler(NotFoundException.class)

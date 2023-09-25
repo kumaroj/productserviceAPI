@@ -42,7 +42,7 @@ public class FakeStoreProductServiceClient {
 
 
 
-    public FakeStoreProductDto updateProduct(GenericProductDto genericProductDto , long id) {
+    public FakeStoreProductDto updateProduct(GenericProductDto genericProductDto , String id) {
         RestTemplate restTemplate = restTemplateBuilder.build();
 
         RequestCallback requestCallback = restTemplate.httpEntityCallback(genericProductDto, FakeStoreProductDto.class);
@@ -58,7 +58,7 @@ public class FakeStoreProductServiceClient {
 
 
 
-    public FakeStoreProductDto getproductById(long id) throws NotFoundException {
+    public FakeStoreProductDto getproductById(String id) throws NotFoundException {
 
         RestTemplate restTemplate= restTemplateBuilder.build();
         ResponseEntity<FakeStoreProductDto> responseEntity = restTemplate.getForEntity(specificProductRequestUrl ,
@@ -84,7 +84,7 @@ public class FakeStoreProductServiceClient {
     }
 
 
-    public FakeStoreProductDto deleteproductById(long id) {
+    public FakeStoreProductDto deleteproductById(String id) {
         RestTemplate restTemplate =  restTemplateBuilder.build();
         RequestCallback requestCallback = restTemplate.acceptHeaderRequestCallback(FakeStoreProductDto.class);
         ResponseExtractor<ResponseEntity<FakeStoreProductDto>> responseExtractor = restTemplate.responseEntityExtractor(FakeStoreProductDto.class);

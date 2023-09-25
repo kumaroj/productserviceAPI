@@ -10,12 +10,14 @@ public interface ProductService {
 
    public GenericProductDto createProduct(GenericProductDto genericProductDto);
 
-   public GenericProductDto updateProduct(GenericProductDto genericProductDto , long id);
+   public GenericProductDto updateProduct(GenericProductDto genericProductDto , String id);
 
-   public GenericProductDto getproductById(long id) throws NotFoundException;
+   public GenericProductDto getproductById(String id) throws NotFoundException;
 
    public List<GenericProductDto> getAllProducts();
 
-   public GenericProductDto deleteproductById(long id);
+   public GenericProductDto deleteproductById(String id) throws NotFoundException;
+
+
 
 }
