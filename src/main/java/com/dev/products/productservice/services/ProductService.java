@@ -10,7 +10,7 @@ public interface ProductService {
 
    public GenericProductDto createProduct(GenericProductDto genericProductDto);
 
-   public GenericProductDto updateProduct(GenericProductDto genericProductDto , String id);
+   public GenericProductDto updateProduct(GenericProductDto genericProductDto , String id) throws NotFoundException;
 
    public GenericProductDto getproductById(String id) throws NotFoundException;
 

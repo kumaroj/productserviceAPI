@@ -52,8 +52,12 @@ public class SelfProductServiceImpl implements ProductService{
     }
 
     @Override
-    public GenericProductDto updateProduct(GenericProductDto genericProductDto, String id) {
+    public GenericProductDto updateProduct(GenericProductDto genericProductDto, String id) throws NotFoundException {
        Product product = productRepository.findById(UUID.fromString(id)).get();
+        if (product == null) {
+            throw new NotFoundException("Product not found with id"+id);
+
+        }
        product.getPrice().setPrice(genericProductDto.getPrice());
        product.setDescription(genericProductDto.getDescription());
        product.setTitle(genericProductDto.getTitle());
