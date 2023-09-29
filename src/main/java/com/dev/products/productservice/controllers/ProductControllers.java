@@ -52,7 +52,7 @@ public class ProductControllers {
        return productService.createProduct(genericProductDto);
     }
     @PutMapping("{id}")
-    public GenericProductDto updateProduct(@RequestBody GenericProductDto genericProductDto,@PathVariable("id") String id ){
+    public GenericProductDto updateProduct (@RequestBody GenericProductDto genericProductDto,@PathVariable("id") String id )throws  NotFoundException{
         return productService.updateProduct(genericProductDto , id);
     }
     @ExceptionHandler(NotFoundException.class)
